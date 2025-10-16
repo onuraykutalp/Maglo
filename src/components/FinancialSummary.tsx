@@ -28,7 +28,7 @@ const FinancialSummary: React.FC<Props> = ({ summary }) => {
             <img
               src="/icons/wallet.png"
               alt="Total Balance"
-              className="object-cover w-4 h-4 sm:w-5 sm:h-5 md:w-6 md:h-6 lg:w-7 lg:h-7"
+              className="object-cover w-4 h-4 md:w-4 md:h-4 lg:w-5 lg:h-5"
             />
           </div>
           <div className="ml-2">
@@ -51,7 +51,7 @@ const FinancialSummary: React.FC<Props> = ({ summary }) => {
             <img
               src="/icons/wallet-gray.png"
               alt="Total Expense"
-              className="object-cover w-4 h-4 sm:w-5 sm:h-5 md:w-6 md:h-6 lg:w-7 lg:h-7"
+              className="object-cover w-4 h-4 md:w-4 md:h-4 lg:w-5 lg:h-5"
             />
           </div>
           <div className="ml-2">
@@ -72,7 +72,7 @@ const FinancialSummary: React.FC<Props> = ({ summary }) => {
             <img
               src="/icons/saving.png"
               alt="Total Savings"
-              className="object-cover w-4 h-4 sm:w-5 sm:h-5 md:w-6 md:h-6 lg:w-7 lg:h-7"
+              className="object-cover w-4 h-4 md:w-4 md:h-4 lg:w-5 lg:h-5"
             />
           </div>
           <div className="ml-2">

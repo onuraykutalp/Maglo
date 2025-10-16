@@ -24,7 +24,7 @@ interface Props {
     currency: string;
 }
 
-const FILTERS = [
+const filters = [
     { key: "last6Months", label: "Last 6 Months" },
     { key: "last3Months", label: "Last 3 Months" },
     { key: "lastMonth", label: "Last Month" },
@@ -33,16 +33,16 @@ const FILTERS = [
 const WorkingCapitalChart: React.FC<Props> = ({ data, currency }) => {
     const [filter, setFilter] = useState("last6Months");
 
-    const englishData = data.map(item => ({
+    const myData = data.map(item => ({
         ...item,
         month: monthMap[item.month] || item.month,
     }));
 
-    let filteredData = englishData;
+    let filteredData = myData;
     if (filter === "last3Months") {
-        filteredData = englishData.slice(-3);
+        filteredData = myData.slice(-3);
     } else if (filter === "lastMonth") {
-        filteredData = englishData.slice(-1);
+        filteredData = myData.slice(-1);
     }
 
     const maxValue = Math.max(...filteredData.flatMap(item => [item.income, item.expense]));
@@ -63,14 +63,13 @@ const WorkingCapitalChart: React.FC<Props> = ({ data, currency }) => {
                         <span className="inline-block w-4 h-4 rounded-full" style={{ background: "#d6e60e" }} />
                         <span className="font-medium text-sm">Expense</span>
                     </span>
-                    {/* Filtre Dropdown */}
                     <div className="relative">
                         <select
                             value={filter}
                             onChange={e => setFilter(e.target.value)}
                             className="bg-[#f8f8f8] p-4 pr-8 rounded appearance-none"
                         >
-                            {FILTERS.map(opt => (
+                            {filters.map(opt => (
                                 <option key={opt.key} value={opt.key}>{opt.label}</option>
                             ))}
                         </select>
@@ -78,7 +77,6 @@ const WorkingCapitalChart: React.FC<Props> = ({ data, currency }) => {
                             <IoIosArrowDown />
                         </span>
                     </div>
-                    {/* Legend açıklamaları */}
 
                 </div>
             </div>
