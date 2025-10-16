@@ -46,7 +46,7 @@ const ScheduledTransfers = () => {
                                 <div className="flex flex-col items-end justify-around ml-auto">
                                     <span className="text-[16px] font-bold text-[#000000]">
                                         - {currency(Math.abs(transfer.amount), {
-                                            symbol: transfer.currency + " ",
+                                            symbol: transfer.currency + "",
                                             precision: 2,
                                             separator: ",",
                                             decimal: "."

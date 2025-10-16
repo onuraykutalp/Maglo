@@ -3,7 +3,7 @@ import { useRecentTransactionsStore } from "../stores/useRecentTransactionStore"
 import Spinner from "./Spinner";
 import { MdKeyboardArrowRight } from "react-icons/md";
 import { AnimatePresence, motion } from "framer-motion";
-import { currency } from "currency.js";
+import currency from "currency.js";
 
 
 const RecentTransactions: React.FC = () => {
@@ -57,7 +57,7 @@ const RecentTransactions: React.FC = () => {
                                 <tr key={transaction.id} className="border-b border-gray-100">
                                     <td className="py-2 px-2 flex items-center relative group">
                                         <AnimatePresence>
-                                            <motion.div 
+                                            <motion.div
                                                 initial={{ opacity: 0, scale: 0.95 }}
                                                 animate={{ opacity: 1, scale: 1 }}
                                                 exit={{ opacity: 0, scale: 0.95 }}
@@ -69,9 +69,9 @@ const RecentTransactions: React.FC = () => {
                                                         src={transaction.image}
                                                         alt={transaction.business}
                                                         className="w-32 h-32 object-contain rounded"
-                                                />
-                                            </div>
-                                        </motion.div>
+                                                    />
+                                                </div>
+                                            </motion.div>
                                         </AnimatePresence>
                                         <img
                                             src={transaction.image}
@@ -79,13 +79,19 @@ const RecentTransactions: React.FC = () => {
                                             className="w-8 h-8 object-contain rounded mr-2 transition-transform duration-200 group-hover:scale-110 cursor-pointer"
                                         />
                                         <span className="font-medium">{transaction.business}</span>
-                                        
-                                        
+
+
                                     </td>
                                     <td className="py-2 px-2">{transaction.name}</td>
                                     <td className="py-2 px-2">{transaction.type}</td>
                                     <td className={`py-2 px-2 font-bold ${transaction.amount < 0 ? "text-red-500" : "text-green-600"}`}>
-                                        {transaction.amount < 0 ? "-" : "+"}{Math.abs(transaction.amount).toLocaleString()} {transaction.currency}
+                                        {transaction.amount < 0 ? "-" : "+"}
+                                        {currency(Math.abs(transaction.amount), {
+                                            symbol: transaction.currency + " ",
+                                            precision: 2,
+                                            separator: ",",
+                                            decimal: "."
+                                        }).format()}
                                     </td>
                                     <td className="py-2 px-2 text-xs text-gray-500 text-[16px]">
                                         {new Date(transaction.date).toLocaleDateString("en-GB", {
@@ -94,7 +100,7 @@ const RecentTransactions: React.FC = () => {
                                             year: "numeric"
                                         })}
                                     </td>
-                                    
+
                                 </tr>
                             ))}
                         </tbody>
@@ -160,7 +166,8 @@ const RecentTransactions: React.FC = () => {
                                             <td className="py-2 px-2">{transaction.name}</td>
                                             <td className="py-2 px-2">{transaction.type}</td>
                                             <td className={`py-2 px-2 font-bold ${transaction.amount < 0 ? "text-red-500" : "text-green-600"}`}>
-                                                {transaction.amount < 0 ? "-" : "+"}{currency(Math.abs(transaction.amount), {
+                                                {transaction.amount < 0 ? "-" : "+"}
+                                                {currency(Math.abs(transaction.amount), {
                                                     symbol: transaction.currency + " ",
                                                     precision: 2,
                                                     separator: ",",
