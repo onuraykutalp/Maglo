@@ -4,15 +4,24 @@ import { useNavigate } from "react-router-dom";
 import { toast } from 'react-toastify';
 import { getCookie } from "../utils/getCookie";
 import { validate } from "../utils/validateRegister";
+import Spinner from "./Spinner";
 
 const Register: React.FC = () => {
   const navigate = useNavigate();
+
+  const [pageLoading, setPageLoading] = useState(true);
 
   useEffect(() => {
     const token = getCookie("token")
     if (token) {
       navigate("/dashboard")
     }
+
+    const timer = setTimeout(() => {
+      setPageLoading(false);
+    }, 1000);
+
+    return () => clearTimeout(timer);
   }, [navigate]);
 
   const registerAction = useAuthStore((s) => s.register);
@@ -56,6 +65,10 @@ const Register: React.FC = () => {
     }
   };
 
+  if (pageLoading) {
+    return <Spinner />;
+  }
+
   return (
     <div className="flex flex-col md:flex-row justify-around items-center max-w-screen max-h-screen w-full bg-white relative">
       <div className="w-full md:w-1/2 max-w-md mx-auto">
@@ -64,14 +77,15 @@ const Register: React.FC = () => {
         </div>
         <h2 className="text-2xl font-semibold mb-2">Create new account</h2>
         <span className="text-gray-600 mb-6 block">Welcome! Please enter your details</span>
-        <form onSubmit={handleSubmit} className="space-y-5">
+        <form onSubmit={handleSubmit} className={`space-y-5 ${loading ? "opacity-60 pointer-events-none" : ""}`}>
           <div>
             <label className="block mb-1 font-medium">Full Name</label>
             <input
               name="fullName"
               value={formData.fullName}
               onChange={handleChange}
-              className={`w-full px-3 py-2 border rounded focus:outline-none focus:ring ${errors.fullName ? "border-red-500" : "border-gray-300"}`}
+              disabled={loading}
+              className={`w-full px-3 py-2 border rounded focus:outline-none focus:ring ${errors.fullName ? "border-red-500" : "border-gray-300"} ${loading ? "bg-gray-100 cursor-not-allowed" : ""}`}
             />
             {errors.fullName && <span className="text-red-500 text-sm">{errors.fullName}</span>}
           </div>
@@ -82,7 +96,8 @@ const Register: React.FC = () => {
               value={formData.email}
               onChange={handleChange}
               type="email"
-              className={`w-full px-3 py-2 border rounded focus:outline-none focus:ring ${errors.email ? "border-red-500" : "border-gray-300"}`}
+              disabled={loading}
+              className={`w-full px-3 py-2 border rounded focus:outline-none focus:ring ${errors.email ? "border-red-500" : "border-gray-300"} ${loading ? "bg-gray-100 cursor-not-allowed" : ""}`}
             />
             {errors.email && <span className="text-red-500 text-sm">{errors.email}</span>}
           </div>
@@ -94,7 +109,8 @@ const Register: React.FC = () => {
               onChange={handleChange}
               type="password"
               required
-              className={`w-full px-3 py-2 border rounded focus:outline-none focus:ring ${errors.fullName ? "border-red-500" : "border-gray-300"}`}
+              disabled={loading}
+              className={`w-full px-3 py-2 border rounded focus:outline-none focus:ring ${errors.fullName ? "border-red-500" : "border-gray-300"} ${loading ? "bg-gray-100 cursor-not-allowed" : ""}`}
             />
             {errors.password && <span className="text-red-500 text-sm">{errors.password}</span>}
           </div>
@@ -119,13 +135,13 @@ const Register: React.FC = () => {
             <span>
               Already have an account?{" "}
               <a href="/login" className="text-[#1b212d] hover:text-[#c8ee44] hover:font-semibold relative inline-flex items-center">
-                Sign in
-                <img
-                  src="icons/underline.svg"
-                  alt=""
-                  className="absolute left-0 bottom-0 w-full top-6"
-                  style={{ pointerEvents: "none" }}
-                />
+          Sign in
+          <img
+            src="icons/underline.svg"
+            alt=""
+            className="absolute left-0 bottom-0 w-full top-6"
+            style={{ pointerEvents: "none" }}
+          />
               </a>
             </span>
           </div>

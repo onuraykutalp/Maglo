@@ -11,12 +11,19 @@ import { validateLogin } from '../utils/validateLogin';
 const LoginForm = () => {
 
     const navigate = useNavigate()
+    const [pageLoading, setPageLoading] = useState(true);
 
     useEffect(() => {
         const token = getCookie("token")
         if (token) {
             navigate("/dashboard")
         }
+
+        const timer = setTimeout(() => {
+            setPageLoading(false);
+        }, 1000);
+
+        return () => clearTimeout(timer);
     }, [navigate]);
 
     const [formData, setFormData] = useState({
@@ -62,7 +69,7 @@ const LoginForm = () => {
         }
     }
 
-    if (loading) {
+    if (pageLoading) {
         return <Spinner />
     }
 
@@ -82,7 +89,8 @@ const LoginForm = () => {
                             value={formData.email}
                             onChange={handleChange}
                             type="email"
-                            className={`w-full px-3 py-2 border rounded focus:outline-none focus:ring ${errors.email ? "border-red-500" : "border-gray-300"}`} />
+                            disabled={loading}
+                            className={`w-full px-3 py-2 border rounded focus:outline-none focus:ring ${errors.email ? "border-red-500" : "border-gray-300"} ${loading ? "bg-gray-100 cursor-not-allowed" : ""}`} />
                         {errors.email && <span className="text-red-500 text-sm">{errors.email}</span>}
                     </div>
                     <div>
@@ -92,7 +100,8 @@ const LoginForm = () => {
                             value={formData.password}
                             onChange={handleChange}
                             type="password"
-                            className={`w-full px-3 py-2 border rounded focus:outline-none focus:ring ${errors.password ? "border-red-500" : "border-gray-300"}`} />
+                            disabled={loading}
+                            className={`w-full px-3 py-2 border rounded focus:outline-none focus:ring ${errors.password ? "border-red-500" : "border-gray-300"} ${loading ? "bg-gray-100 cursor-not-allowed" : ""}`} />
                         {errors.password && <span className="text-red-500 text-sm">{errors.password}</span>}
                     </div>
                     <div>

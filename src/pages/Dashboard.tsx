@@ -1,9 +1,8 @@
-import React, { useEffect, useRef, useState } from 'react';
+import React, { useEffect, useState } from 'react';
 import { getCookie } from '../utils/getCookie';
 import { useNavigate } from 'react-router-dom';
 import axios from 'axios';
 import Spinner from '../components/Spinner';
-import { useAuthStore } from '../stores/auth';
 import DashboardTop from '../components/DashboardTop';
 import DashboardContent from '../components/DashboardContent';
 
