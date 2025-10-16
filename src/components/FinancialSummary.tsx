@@ -23,7 +23,6 @@ const FinancialSummary: React.FC<Props> = ({ summary }) => {
     <div className="py-2 w-full">
       <div className="grid grid-cols-1 max-[1300px]:grid-cols-2 min-[1000px]:grid-cols-2 max-[1000px]:grid-cols-1 min-[1300px]:grid-cols-3 xxx:grid-cols-3 gap-3 w-full">
 
-        {/* Total Balance */}
         <div className="bg-[#363a3f] rounded-xl shadow p-2 sm:p-3 md:p-2 h-[125px] flex flex-row items-center transition-transform duration-200 hover:scale-105 hover:shadow-lg cursor-pointer">
           <div className="mr-2 sm:mr-3 flex items-center justify-center h-7 w-7 sm:h-8 sm:w-8 md:h-9 md:w-9 bg-[#4e5257] rounded-full">
             <img
@@ -47,7 +46,6 @@ const FinancialSummary: React.FC<Props> = ({ summary }) => {
           </div>
         </div>
 
-        {/* Total Expense */}
         <div className="bg-[#f8f8f8] rounded-xl shadow p-2 sm:p-3 md:p-2 h-[125px] flex flex-row items-center transition-transform duration-200 hover:scale-105 hover:shadow-lg cursor-pointer">
           <div className="mr-2 sm:mr-3 flex items-center justify-center h-7 w-7 sm:h-8 sm:w-8 md:h-9 md:w-9 bg-[#ebe8e8] rounded-full">
             <img
@@ -69,7 +67,6 @@ const FinancialSummary: React.FC<Props> = ({ summary }) => {
           </div>
         </div>
 
-        {/* Total Savings */}
         <div className="bg-[#f8f8f8] rounded-xl shadow p-2 sm:p-3 md:p-2 h-[125px] flex flex-row items-center transition-transform duration-200 hover:scale-105 hover:shadow-lg cursor-pointer">
           <div className="mr-2 sm:mr-3 flex items-center justify-center h-7 w-7 sm:h-8 sm:w-8 md:h-9 md:w-9 bg-[#ebe8e8] rounded-full">
             <img
