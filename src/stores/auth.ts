@@ -1,15 +1,12 @@
 import { create } from "zustand";
 import api from "../api/client";
 import type { User } from "../types/User";
-import type { AuthResponse } from "../types/AuthResponse";
 import type { LoginRequest } from "../types/LoginRequest";
 import type { RegisterRequest } from "../types/RegisterRequest";
 import type { RegisterResponse } from "../types/RegisterResponse";
 import type { LoginResponse } from "../types/LoginResponse";
 import { setCookie } from "../utils/setCookie";
 import { getCookie } from "../utils/getCookie";
-
-const API_URL = import.meta.env.VITE_API_URL;
 
 interface AuthState {
     user: User | null;
@@ -30,7 +27,7 @@ export const useAuthStore = create<AuthState>((set) => ({
     login: async (data: LoginRequest): Promise<LoginResponse> => {
         set({ loading: true, error: null });
         try {
-            const res = await api.post(`${API_URL}/users/login`, data);
+            const res = await api.post("users/login", data);
             setCookie("token", res.data.data.accessToken, 1);
             set({
                 user: res.data.data.user,
@@ -55,7 +52,7 @@ export const useAuthStore = create<AuthState>((set) => ({
     register: async (data) => {
         set({ loading: true, error: null });
         try {
-            const res = await api.post<RegisterResponse>(`${API_URL}/users/register`, data);
+            const res = await api.post<RegisterResponse>("users/register", data);
             set({
                 user: res.data.data,
                 loading: false,
@@ -87,7 +84,7 @@ export const useAuthStore = create<AuthState>((set) => ({
                 set({ user: null, loading: false });
                 return;
             }
-            const response = await api.get(`${API_URL}/users/profile`, {
+            const response = await api.get("users/profile", {
                 headers: { Authorization: `Bearer ${token}` }
             });
             console.log("API response:", response.data);
