@@ -9,6 +9,8 @@ import type { LoginResponse } from "../types/LoginResponse";
 import { setCookie } from "../utils/setCookie";
 import { getCookie } from "../utils/getCookie";
 
+const API_URL = import.meta.env.VITE_API_URL;
+
 interface AuthState {
     user: User | null;
     token: string | null;
@@ -28,7 +30,7 @@ export const useAuthStore = create<AuthState>((set) => ({
     login: async (data: LoginRequest): Promise<LoginResponse> => {
         set({ loading: true, error: null });
         try {
-            const res = await api.post("users/login", data);
+            const res = await api.post(`${API_URL}/users/login`, data);
             setCookie("token", res.data.data.accessToken, 1);
             set({
                 user: res.data.data.user,
@@ -53,7 +55,7 @@ export const useAuthStore = create<AuthState>((set) => ({
     register: async (data) => {
         set({ loading: true, error: null });
         try {
-            const res = await api.post<RegisterResponse>("users/register", data);
+            const res = await api.post<RegisterResponse>(`${API_URL}/users/register`, data);
             set({
                 user: res.data.data,
                 loading: false,
