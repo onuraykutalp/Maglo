@@ -21,7 +21,7 @@ const FinancialSummary: React.FC<Props> = ({ summary }) => {
 
   return (
     <div className="py-2 w-full">
-      <div className="grid grid-cols-1 max-[1300px]:grid-cols-2 min-[1000px]:grid-cols-2 min-[1300px]:grid-cols-3 xxx:grid-cols-3 gap-3 w-full">
+      <div className="grid grid-cols-1 max-[1300px]:grid-cols-2 min-[1000px]:grid-cols-2 max-[1000px]:grid-cols-1 min-[1300px]:grid-cols-3 xxx:grid-cols-3 gap-3 w-full">
 
         {/* Total Balance */}
         <div className="bg-[#363a3f] rounded-xl shadow p-2 sm:p-3 md:p-2 h-[125px] flex flex-row items-center transition-transform duration-200 hover:scale-105 hover:shadow-lg cursor-pointer">
