@@ -24,10 +24,10 @@ const Header = () => {
 
     const navItems = [
         { name: 'Dashboard', href: '/dashboard', icon: '/icons/dashboard.png' },
-        { name: 'Transactions', href: '/transactions', icon: '/icons/transactions.png' },
-        { name: 'Invoices', href: '/invoices', icon: '/icons/invoices.png' },
-        { name: 'My Wallets', href: '/my-wallets', icon: '/icons/wallets.png' },
-        { name: 'Settings', href: '/settings', icon: '/icons/settings.png' },
+        { name: 'Transactions', href: '#', icon: '/icons/transactions.png' },
+        { name: 'Invoices', href: '#', icon: '/icons/invoices.png' },
+        { name: 'My Wallets', href: '#', icon: '/icons/wallets.png' },
+        { name: 'Settings', href: '#', icon: '/icons/settings.png' },
     ];
 
     return (
@@ -60,7 +60,7 @@ const Header = () => {
                     </div>
                 ))}
             </div>
-            <div className='flex flex-col mt-auto mb-4 justify-start w-full'>
+            <div className='flex flex-col mt-auto mb-20 justify-start w-full'>
                 <a href="#" className='px-4 py-2 rounded-md w-full hover:text-[#b5dd3f] cursor-pointer'><img src="/icons/help.png" alt="Help" className="w-5 h-5 mr-2 inline" />Help</a>
                 <a onClick={handleLogout} className='px-4 py-2 rounded-md w-full hover:text-[#b5dd3f] cursor-pointer'>
                     <img src="/icons/logout.png" alt="Settings" className="w-5 h-5 mr-2 inline" />Logout

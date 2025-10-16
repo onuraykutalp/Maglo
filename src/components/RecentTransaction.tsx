@@ -3,6 +3,7 @@ import { useRecentTransactionsStore } from "../stores/useRecentTransactionStore"
 import Spinner from "./Spinner";
 import { MdKeyboardArrowRight } from "react-icons/md";
 import { AnimatePresence, motion } from "framer-motion";
+import { currency } from "currency.js";
 
 
 const RecentTransactions: React.FC = () => {
@@ -159,7 +160,12 @@ const RecentTransactions: React.FC = () => {
                                             <td className="py-2 px-2">{transaction.name}</td>
                                             <td className="py-2 px-2">{transaction.type}</td>
                                             <td className={`py-2 px-2 font-bold ${transaction.amount < 0 ? "text-red-500" : "text-green-600"}`}>
-                                                {transaction.amount < 0 ? "-" : "+"}{Math.abs(transaction.amount).toLocaleString()} {transaction.currency}
+                                                {transaction.amount < 0 ? "-" : "+"}{currency(Math.abs(transaction.amount), {
+                                                    symbol: transaction.currency + " ",
+                                                    precision: 2,
+                                                    separator: ",",
+                                                    decimal: "."
+                                                }).format()}
                                             </td>
                                             <td className="py-2 px-2 text-xs text-gray-500 text-[16px]">
                                                 {new Date(transaction.date).toLocaleDateString("en-GB", {

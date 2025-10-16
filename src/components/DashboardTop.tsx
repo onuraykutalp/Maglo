@@ -98,8 +98,8 @@ const DashboardTop = () => {
 
   return (
     <>
-      <div className="flex flex-row items-center justify-between p-10 bg-white text-black">
-        <h1 className="text-2xl font-bold">Dashboard</h1>
+      <div className="flex flex-row items-center justify-between px-10 py-6 bg-white text-black">
+        <h1 className="text-2xl font-semibold">Dashboard</h1>
         <div className="flex items-center">
           <div className="relative flex items-center mr-4">
             {searchInput ? (

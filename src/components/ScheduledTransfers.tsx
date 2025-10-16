@@ -1,6 +1,7 @@
 import React, { useEffect } from 'react'
 import { useScheduledTransferStore } from '../stores/useScheduledTransferStore';
 import Spinner from './Spinner';
+import currency from "currency.js";
 
 const ScheduledTransfers = () => {
 
@@ -10,7 +11,7 @@ const ScheduledTransfers = () => {
         if (transfers.length === 0) fetchScheduledTransfers();
     }, [fetchScheduledTransfers, transfers.length]);
 
-    if (loading) return <Spinner/>;
+    if (loading) return <Spinner />;
     if (error) return <div>Error: {error}</div>;
     if (!transfers || transfers.length === 0) return <div>No scheduled transfers found.</div>;
 
@@ -43,7 +44,14 @@ const ScheduledTransfers = () => {
                                     </span>
                                 </div>
                                 <div className="flex flex-col items-end justify-around ml-auto">
-                                    <span className="text-[16px] font-bold text-[#000000]">- {transfer.currency}{Math.abs(transfer.amount)}</span>
+                                    <span className="text-[16px] font-bold text-[#000000]">
+                                        - {currency(Math.abs(transfer.amount), {
+                                            symbol: transfer.currency + " ",
+                                            precision: 2,
+                                            separator: ",",
+                                            decimal: "."
+                                        }).format()}
+                                    </span>
                                 </div>
                             </div>
                         ))
