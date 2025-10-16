@@ -23,7 +23,7 @@ const Wallet = () => {
 
     return (
         <>
-            <div className="flex flex-row">
+            <div className="flex flex-row mt-8">
                 <h2 className="text-xl font-semibold mb-4">Wallet</h2>
                 <button className="justify-end ml-auto p-2 text-[#929eae] rounded-md cursor-pointer">
                     <HiOutlineDotsHorizontal size={24} />

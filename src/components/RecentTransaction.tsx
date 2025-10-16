@@ -32,8 +32,11 @@ const RecentTransactions: React.FC = () => {
         <>
             <div className="bg-white rounded shadow p-4 my-4 relative">
                 <div className="absolute top-4 right-4">
-                    <button className="flex flex-row items-center text-[#29a073] font-semibold cursor-pointer"
-                        onClick={showAllTransactions}>View All <MdKeyboardArrowRight />
+                    <button
+                        className="flex flex-row items-center text-[#29a073] font-semibold cursor-pointer transition-colors duration-200 hover:text-[#17694a] hover:bg-[#e6f7f0] px-2 py-1 rounded"
+                        onClick={showAllTransactions}
+                    >
+                        View All <MdKeyboardArrowRight />
                     </button>
                 </div>
                 <h3 className="text-lg font-semibold mb-4">Recent Transactions</h3>
@@ -51,9 +54,32 @@ const RecentTransactions: React.FC = () => {
                         <tbody>
                             {recent.transactions.slice(0, 3).map(transaction => (
                                 <tr key={transaction.id} className="border-b border-gray-100">
-                                    <td className="py-2 px-2 flex items-center">
-                                        <img src={transaction.image} alt={transaction.business} className="w-8 h-8 rounded mr-2" />
+                                    <td className="py-2 px-2 flex items-center relative group">
+                                        <AnimatePresence>
+                                            <motion.div 
+                                                initial={{ opacity: 0, scale: 0.95 }}
+                                                animate={{ opacity: 1, scale: 1 }}
+                                                exit={{ opacity: 0, scale: 0.95 }}
+                                                transition={{ duration: 0.9 }}
+                                                className="absolute left-10 top-1 z-10 hidden group-hover:flex"
+                                            >
+                                                <div className="bg-white rounded shadow-lg p-2 border">
+                                                    <img
+                                                        src={transaction.image}
+                                                        alt={transaction.business}
+                                                        className="w-32 h-32 object-contain rounded"
+                                                />
+                                            </div>
+                                        </motion.div>
+                                        </AnimatePresence>
+                                        <img
+                                            src={transaction.image}
+                                            alt={transaction.business}
+                                            className="w-8 h-8 object-contain rounded mr-2 transition-transform duration-200 group-hover:scale-110 cursor-pointer"
+                                        />
                                         <span className="font-medium">{transaction.business}</span>
+                                        
+                                        
                                     </td>
                                     <td className="py-2 px-2">{transaction.name}</td>
                                     <td className="py-2 px-2">{transaction.type}</td>
