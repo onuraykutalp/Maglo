@@ -70,13 +70,13 @@ const Register: React.FC = () => {
   }
 
   return (
-    <div className="flex flex-col md:flex-row justify-around items-center max-w-screen max-h-screen w-full bg-white relative">
-      <div className="w-full md:w-1/2 max-w-md mx-auto">
-        <div className="absolute top-20">
-          <img src="../maglo.png" alt="Logo" className="w-24 h-auto mb-4" />
+    <div className="flex flex-col md:flex-row justify-center items-center min-h-screen w-full bg-white relative">
+      <div className="w-full md:w-1/2 max-w-md mx-auto px-4 py-8 md:py-0 flex flex-col justify-center">
+        <div className="flex justify-center md:justify-start mb-6 md:mb-8">
+          <img src="../maglo.png" alt="Logo" className="w-20 h-auto md:w-24" />
         </div>
-        <h2 className="text-2xl font-semibold mb-2">Create new account</h2>
-        <span className="text-gray-600 mb-6 block">Welcome! Please enter your details</span>
+        <h2 className="text-2xl md:text-3xl font-semibold mb-2 text-center md:text-left">Create new account</h2>
+        <span className="text-gray-600 mb-6 block text-center md:text-left">Welcome! Please enter your details</span>
         <form onSubmit={handleSubmit} className={`space-y-5 ${loading ? "opacity-60 pointer-events-none" : ""}`}>
           <div>
             <label className="block mb-1 font-medium">Full Name</label>
@@ -110,7 +110,7 @@ const Register: React.FC = () => {
               type="password"
               required
               disabled={loading}
-              className={`w-full px-3 py-2 border rounded focus:outline-none focus:ring ${errors.fullName ? "border-red-500" : "border-gray-300"} ${loading ? "bg-gray-100 cursor-not-allowed" : ""}`}
+              className={`w-full px-3 py-2 border rounded focus:outline-none focus:ring ${errors.password ? "border-red-500" : "border-gray-300"} ${loading ? "bg-gray-100 cursor-not-allowed" : ""}`}
             />
             {errors.password && <span className="text-red-500 text-sm">{errors.password}</span>}
           </div>
@@ -129,26 +129,26 @@ const Register: React.FC = () => {
             disabled={loading}
           >
             <img src="https://www.svgrepo.com/show/355037/google.svg" alt="Google" className="w-5 h-5" />
-            Sign up with Google
+            <span className="truncate">Sign up with Google</span>
           </button>
           <div className="mt-6 text-center text-gray-400">
             <span>
               Already have an account?{" "}
               <a href="/login" className="text-[#1b212d] hover:text-[#c8ee44] hover:font-semibold relative inline-flex items-center">
-          Sign in
-          <img
-            src="icons/underline.svg"
-            alt=""
-            className="absolute left-0 bottom-0 w-full top-6"
-            style={{ pointerEvents: "none" }}
-          />
+                Sign in
+                <img
+                  src="icons/underline.svg"
+                  alt=""
+                  className="absolute left-0 bottom-0 w-full top-6"
+                  style={{ pointerEvents: "none" }}
+                />
               </a>
             </span>
           </div>
         </form>
       </div>
-      <div className="w-full md:w-1/2 flex justify-center items-center">
-        <img src="../image.png" alt="Image" className="w-full h-auto max-h-screen object-cover" />
+      <div className="hidden md:flex w-1/2 justify-center items-center h-full">
+        <img src="../image.png" alt="Image" className="w-full h-auto max-h-screen object-cover rounded-lg shadow-lg" />
       </div>
     </div>
   );
