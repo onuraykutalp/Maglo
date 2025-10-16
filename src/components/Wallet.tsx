@@ -34,30 +34,40 @@ const Wallet = () => {
                 {/* Koyu kart */}
                 <div className="absolute top-0 left-0 w-full z-10">
                     <div className="rounded-2xl p-6 shadow-xl min-w-[340px] min-h-[170px] flex flex-col gap-4
-      bg-[radial-gradient(circle_at_60%_40%,#636363_0%,#232323_100%)] text-white">
-                        <div className="flex justify-between items-center">
-                            <div className="flex items-center gap-2">
-
-                                <span className="ml-2 font-medium text-gray-300">{card.bank}</span>
+                        bg-gradient-to-br from-[#636363] via-[#444444] to-[#232323] text-white">
+                            <div className="flex justify-between items-center">
+                                    <div className="flex items-center gap-2">
+                                            {
+                                                    (() => {
+                                                            const [bankName, ...rest] = card.bank.split(" ");
+                                                            const restOfBankName = rest.join(" ");
+                                                            return (
+                                                                    <div>
+                                                                            <span className="ml-2 font-semibold text-white">{bankName}. </span>
+                                                                            <span className="text-[#626260] text-md font-medium">{restOfBankName}</span>
+                                                                    </div>
+                                                            )
+                                                    })()
+                                            }
+                                    </div>
+                                    <span className="text-xl opacity-70 ml-2">
+                                            <svg width="32" height="32" viewBox="0 0 32 32" fill="none"><path d="M6 16C10.4183 16 14 19.5817 14 24" stroke="#444" strokeWidth="2" /><path d="M18 16C22.4183 16 26 19.5817 26 24" stroke="#444" strokeWidth="2" /></svg>
+                                    </span>
                             </div>
-                            <span className="text-xl opacity-70 ml-2">
-                                <svg width="32" height="32" viewBox="0 0 32 32" fill="none"><path d="M6 16C10.4183 16 14 19.5817 14 24" stroke="#444" strokeWidth="2" /><path d="M18 16C22.4183 16 26 19.5817 26 24" stroke="#444" strokeWidth="2" /></svg>
-                            </span>
-                        </div>
-                        <div className="flex items-center gap-3 mt-4 mb-2">
-                            <span className="bg-[#cfcfcf] w-10 h-8 rounded flex items-center justify-center text-gray-700 text-lg">
-                                <img src="./icons/chip.png" alt="Chip" />
-                            </span>
-                        </div>
-                        <div className="mb-2 font-mono tracking-widest select-none text-2xl font-bold">
-                            {card.cardNumber}
-                        </div>
-                        <div className="flex justify-between items-end mt-1">
-                            <span className="text-base opacity-70">
-                                {String(card.expiryMonth).padStart(2, "0")}/{String(card.expiryYear).slice(-2)}
-                            </span>
-                            <img src="./icons/visa.png" alt="VISA" />
-                        </div>
+                            <div className="flex items-center gap-3 mt-4 mb-2">
+                                    <span className="bg-[#cfcfcf] w-10 h-8 rounded flex items-center justify-center text-gray-700 text-lg">
+                                            <img src="./icons/chip.png" alt="Chip" />
+                                    </span>
+                            </div>
+                            <div className="mb-2 font-mono tracking-widest select-none text-2xl font-bold">
+                                    {card.cardNumber}
+                            </div>
+                            <div className="flex justify-between items-end mt-1">
+                                    <span className="text-base opacity-70">
+                                            {String(card.expiryMonth).padStart(2, "0")}/{String(card.expiryYear).slice(-2)}
+                                    </span>
+                                    <img src="./icons/visa.png" alt="VISA" />
+                            </div>
                     </div>
                 </div>
 
@@ -73,7 +83,18 @@ const Wallet = () => {
                     ">
                         <div className="flex justify-between items-center">
                             <div className="flex items-center gap-2">
-                                <span className="ml-2 font-medium text-white">{card.bank}</span>
+                                {
+                                    (() => {
+                                        const [bankName, ...rest] = card.bank.split(" ");
+                                        const restOfBankName = rest.join(" ");
+                                        return (
+                                            <div>
+                                                <span className="ml-2 font-semibold text-white">{bankName}. </span>
+                                                <span className="text-white text-sm">{restOfBankName}</span>
+                                            </div>
+                                        )
+                                    })()
+                                }
                             </div>
                             <span className="text-xl opacity-60 ml-2">
                                 <img src="./icons/wifi.png" alt="Wireless" className="mt-6" />
