@@ -87,7 +87,7 @@ export const useAuthStore = create<AuthState>((set) => ({
                 set({ user: null, loading: false });
                 return;
             }
-            const response = await api.get("users/profile", {
+            const response = await api.get(`${API_URL}/users/profile`, {
                 headers: { Authorization: `Bearer ${token}` }
             });
             console.log("API response:", response.data);
