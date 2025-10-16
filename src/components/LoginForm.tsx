@@ -75,17 +75,16 @@ const LoginForm = () => {
 
     return (
         <div className="flex flex-col md:flex-row justify-center items-center min-h-screen w-full bg-white relative">
-            <div className="w-full md:w-1/2 flex flex-col items-center px-4 py-8 md:py-0 md:px-8 max-w-lg mx-auto relative z-10">
-                <div className="mb-8 md:absolute md:top-[-100px] md:left-0 flex justify-center md:justify-start w-full">
+            <div className="w-full md:w-1/2 flex flex-col px-4 py-8 md:py-0 md:px-8 max-w-lg mx-auto relative z-10">
+                <div className="mb-8 md:absolute md:top-[-100px] md:left-8 flex justify-center md:justify-start w-full">
                     <img
                         src="../maglo.png"
                         alt="Logo"
                         className="w-20 h-auto md:w-24"
-                        style={{ maxWidth: "100%", height: "auto" }}
                     />
                 </div>
-                <h2 className="text-2xl md:text-3xl font-semibold mb-2 text-center">Sign In</h2>
-                <span className="text-gray-600 mb-6 block text-center text-base md:text-lg">
+                <h2 className="text-2xl md:text-3xl font-semibold mb-2">Sign In</h2>
+                <span className="text-gray-600 mb-6 block text-base md:text-lg">
                     Welcome back! Please enter your details
                 </span>
                 <form onSubmit={handleSubmit} className="space-y-5 w-full">
